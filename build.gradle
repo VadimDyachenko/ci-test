@@ -1,7 +1,6 @@
 buildscript {
     ext {
         springBootVersion = '1.4.1.RELEASE'
-        gradleDockerVersion = "1.2"
     }
     repositories {
         mavenCentral()
@@ -9,7 +8,6 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath("se.transmode.gradle:gradle-docker:${gradleDockerVersion}")
     }
 }
 
@@ -19,7 +17,6 @@ version '1.0-SNAPSHOT'
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
-apply plugin: 'docker'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -30,18 +27,6 @@ repositories {
 
 jar {
     baseName = 'microservice'
-}
-
-task buildDocker(type: Docker, dependsOn: build) {
-    push = false
-    applicationName = jar.baseName
-    dockerfile = file('Dockerfile')
-    doFirst {
-        copy {
-            from jar
-            into stageDir
-        }
-    }
 }
 
 dependencies {
