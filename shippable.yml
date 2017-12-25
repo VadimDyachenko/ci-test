@@ -36,7 +36,7 @@ build:
   post_ci:
     - docker build -t $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$COMMIT .
     - docker ps -a
-    - if [ "$BRANCH" == "master" ]; then docker push docker-registry-url/image-name:$BRANCH$COMMIT; fi
+    - if [ "$BRANCH" == "master" ]; then docker push $DOCKER_ACC/$DOCKER_REPO:$BRANCH$COMMIT; fi
 
 notifications:
     email:
