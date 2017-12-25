@@ -30,7 +30,6 @@ build:
     - ls -l
 #    - docker run --name=gradle -u root --rm --volumes-from $SHIPPABLE_CONTAINER_NAME -e "percona_ip=$percona_ip" -w /build romach007/gradle-build:1.0 gradle clean build --stacktrace
     - docker run --name=gradle -u root --rm --volumes-from $SHIPPABLE_CONTAINER_NAME -w /build romach007/gradle-build:1.0 gradle clean build --stacktrace
-    - cd ./
     - ls -l
 
   post_ci:
