@@ -30,11 +30,11 @@ build:
     - ls -l
 #    - docker run --name=gradle -u root --rm --volumes-from $SHIPPABLE_CONTAINER_NAME -e "percona_ip=$percona_ip" -w /build romach007/gradle-build:1.0 gradle clean build --stacktrace
     - docker run --name=gradle -u root --rm --volumes-from $SHIPPABLE_CONTAINER_NAME -w /build romach007/gradle-build:1.0 gradle clean build --stacktrace
-    - cd ./build
+#    - cd ./build
     - ls -l
 
   post_ci:
-    - docker build -t $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$BUILD_NUMBER .
+    - docker build -t $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$COMMIT .
     - docker ps -a
     - if [ "$BRANCH" == "master" ]; then docker push docker-registry-url/image-name:$BRANCH$COMMIT; fi
 
