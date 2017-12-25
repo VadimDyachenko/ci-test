@@ -26,7 +26,7 @@ build:
     - docker run --rm naqoda/mysql-client mysql --host="$percona_ip" -P 3306 --user=root --password=12345 --execute="CREATE USER IF NOT EXISTS 'vadim'@'%' IDENTIFIED BY '12345';GRANT ALL PRIVILEGES ON *.* TO 'vadim'@'%';CREATE DATABASE IF NOT EXISTS db_test;"
     - git merge origin master
     - cp -a ./. /build/
-    - docker run --name=gradle -u root --rm --volumes-from $SHIPPABLE_CONTAINER_NAME -e "percona_ip=$percona_ip" -w /build romach007/gradle-build:1.0 gradle clean build buildDocker --stacktrace
+    - docker run --name=gradle -u root --rm --volumes-from $SHIPPABLE_CONTAINER_NAME -e "percona_ip=$percona_ip" -w /build romach007/gradle-build:1.0 gradle clean build --stacktrace
 
   post_ci:
     - docker build -t $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$BUILD_NUMBER
