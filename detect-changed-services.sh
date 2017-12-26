@@ -13,8 +13,7 @@ detect_changed_services() {
  do
    if [ "$folder" == '_global' ]; then
      echo "common folder changed, building and publishing all microservices"
-#     changed_services=`find . -maxdepth 1 -type d -not -name '_global' -not -name 'shippable' -not -name '.git' -not -path '.' | sed 's|./||'`
-     changed_services=`find . -maxdepth 1 -type d -not -name 'shippable' -not -name '.git' -not -path '.' | sed 's|./||'`
+     changed_services=`find . -maxdepth 1 -type d -not -name '_global' -not -name 'shippable' -not -name '.git' -not -path '.' | sed 's|./||'`
      echo "list of microservice "$changed_services
      break
    else
