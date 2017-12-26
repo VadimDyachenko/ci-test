@@ -13,7 +13,8 @@ detect_changed_services() {
  do
    if [ "$folder" == '_global' ]; then
      echo "common folder changed, building and publishing all microservices"
-     changed_services=`find . -maxdepth 1 -type d -not -name '_global' -not -name 'shippable' -not -name '.git' -not -path '.' | sed 's|./||'`
+#     changed_services=`find . -maxdepth 1 -type d -not -name '_global' -not -name 'shippable' -not -name '.git' -not -path '.' | sed 's|./||'`
+     changed_services=`find . -maxdepth 1 -type d -not -name 'shippable' -not -name '.git' -not -path '.' | sed 's|./||'`
      echo "list of microservice "$changed_services
      break
    else
@@ -27,7 +28,7 @@ detect_changed_services() {
  do
    echo "-------------------Running packaging for $service---------------------"
    # copy the common code to the service so that it can be packaged in the docker image
-   cp -r ./_global $service
+   cp package-service.sh $service
    pushd "$service"
    # move the build script to the root of the service
    echo "Commit: "$COMMIT
@@ -36,8 +37,8 @@ detect_changed_services() {
    echo "Branch: "$BRANCH
    echo "Head branch: "$HEAD_BRANCH
 
-   mv ./_global/package-service.sh ./.
-   ./package-service.sh $service $COMMIT $PULL_REQUEST
+#   mv ./_global/package-service.sh ./.
+   ./package-service.sh $service $COMMIT $BRANCH
    popd
  done
 }
