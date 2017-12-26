@@ -6,7 +6,7 @@ detect_changed_services() {
 
  # get a list of all the changed folders only
  changed_folders=`git diff --name-only $SHIPPABLE_COMMIT_RANGE | grep / | awk 'BEGIN {FS="/"} {print $1}' | uniq`
- echo "changed folders "$changed_folders
+ echo "changed folders: "$changed_folders
 
  changed_services=()
  for folder in $changed_folders
@@ -31,9 +31,8 @@ detect_changed_services() {
    pushd "$service"
    # move the build script to the root of the service
    mv ./_global/package-service.sh ./.
-   _global/package-service.sh "$service"
+   ./package-service.sh "$service"
    popd
-
  done
 }
 
