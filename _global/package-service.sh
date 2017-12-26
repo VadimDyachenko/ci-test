@@ -6,9 +6,9 @@ tag_and_push_image() {
 
   COMMIT_HASH=expr substr $COMMIT 1 10
   DATE=`date +%Y-%m-%d`
-  sudo docker build -t $ACCOUNT_NAME/$1:$PULL_REQUEST_BASE_BRANCH_$DATE-$COMMIT_HASH .
+  sudo docker build -t $ACCOUNT_NAME/$1:$PULL_REQUEST_BASE_BRANCH.$DATE-$COMMIT_HASH .
   echo "pushing image $1"
-  sudo docker push $ACCOUNT_NAME/$1:$PULL_REQUEST_BASE_BRANCH_$DATE-$COMMIT_HASH
+  sudo docker push $ACCOUNT_NAME/$1:$PULL_REQUEST_BASE_BRANCH.$DATE-$COMMIT_HASH
 }
 
 main() {
