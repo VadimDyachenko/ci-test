@@ -30,8 +30,10 @@ detect_changed_services() {
    cp -r ./_global $service
    pushd "$service"
    # move the build script to the root of the service
+   echo "Commit: "$COMMIT
+   echo "PullRequest: "$PULL_REQUEST_BASE_BRANCH
    mv ./_global/package-service.sh ./.
-   ./package-service.sh "$service"
+   ./package-service.sh $service $COMMIT $PULL_REQUEST_BASE_BRANCH
    popd
  done
 }
