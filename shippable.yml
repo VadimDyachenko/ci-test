@@ -3,9 +3,9 @@ language: java
 jdk:
     - oraclejdk8
 #env:
-#  global:
-#  - DOCKER_REPO=ci-test # {repository name}
-#  - DOCKER_ACC=vadimdyachenko # {account name}
+  global:
+  - DOCKER_REPO=ci-test # {repository name}
+  - DOCKER_ACC=vadimdyachenko # {account name}
 
 integrations:
   hub:
