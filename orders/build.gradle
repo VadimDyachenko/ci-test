@@ -33,9 +33,6 @@ jar {
     baseName = 'orders'
 }
 
-docker {
-}
-
 import de.gesellix.gradle.docker.tasks.*
 task image(type: DockerBuildTask) {
     dependsOn build
