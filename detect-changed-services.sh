@@ -36,7 +36,7 @@ detect_changed_services() {
    echo "Branch: "$BRANCH
    echo "Head branch: "$HEAD_BRANCH
 
-#   mv ./_global/package-service.sh ./.
+   mv ./_global/package-service.sh ./.
    ./package-service.sh $service $COMMIT $BRANCH
    popd
  done
