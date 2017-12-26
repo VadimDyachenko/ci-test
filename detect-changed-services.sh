@@ -33,6 +33,7 @@ detect_changed_services() {
    mv ./_global/package-service.sh ./.
    _global/package-service.sh "$service"
    popd
+
  done
 }
 

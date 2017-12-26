@@ -12,6 +12,7 @@ tag_and_push_image() {
 #  echo "posting the version of the image resource for $1"
 #  shipctl put_resource_state $1"_img" "SHIPPABLE_BUILD_NUMBER" $SHIPPABLE_BUILD_NUMBER
 #  shipctl put_resource_state $1"_img" "versionName" $BRANCH.$SHIPPABLE_BUILD_NUMBER
+
 }
 
 main() {
