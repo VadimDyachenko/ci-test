@@ -27,7 +27,7 @@ detect_changed_services() {
  do
    echo "-------------------Running packaging for $service---------------------"
    # copy the common code to the service so that it can be packaged in the docker image
-   cp package-service.sh $service
+   cp -r ./_global $service
    pushd "$service"
    # move the build script to the root of the service
    echo "Commit: "$COMMIT
