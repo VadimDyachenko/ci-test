@@ -4,7 +4,7 @@ tag_and_push_image() {
 
   echo "building image $1"
   echo "building commit $2"
-  echo "building branch $3"
+  echo "building pullrequest $3"
 
   COMMIT_HASH="$(expr substr $2 1 10)"
   DATE="$(date +%Y-%m-%d)"
