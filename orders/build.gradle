@@ -1,0 +1,53 @@
+buildscript {
+    ext {
+        springBootVersion = '1.4.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+plugins {
+    id "de.gesellix.docker" version "2017-01-02T18-10-48"
+}
+
+group 'test_ci'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    baseName = 'orders'
+}
+
+docker {
+}
+
+import de.gesellix.gradle.docker.tasks.*
+task image(type: DockerBuildTask) {
+    dependsOn build
+    buildContextDirectory = project.projectDir
+    imageName = 'orders'
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: 'spring-boot-starter-tomcat'
+    }
+    compile 'org.springframework.boot:spring-boot-starter-jetty'
+    compile 'javax.inject:javax.inject:1'
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}

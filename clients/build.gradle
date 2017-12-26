@@ -8,8 +8,11 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath 'se.transmode.gradle:gradle-docker:1.2'
     }
+}
+
+plugins {
+    id "de.gesellix.docker" version "2017-01-02T18-10-48"
 }
 
 group 'test_ci'
@@ -18,7 +21,6 @@ version '1.0-SNAPSHOT'
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
-apply plugin: 'docker'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -28,21 +30,18 @@ repositories {
 }
 
 jar {
-    baseName = 'microservice'
+    baseName = 'clients'
 }
 
-task buildDocker(type: Docker, dependsOn: build) {
-    push = false
-    applicationName = jar.baseName
-    dockerfile = file('Dockerfile')
-    doFirst {
-        copy {
-            from jar
-            into stageDir
-        }
-    }
+docker {
 }
 
+import de.gesellix.gradle.docker.tasks.*
+task image(type: DockerBuildTask) {
+    dependsOn build
+    buildContextDirectory = project.projectDir
+    imageName = 'clients'
+}
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web") {

@@ -1,4 +1,4 @@
-package ua.vadim.microservice.controller;
+package service.clients.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
