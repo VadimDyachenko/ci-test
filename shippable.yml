@@ -32,14 +32,14 @@ build:
     - docker run --name=gradle -u root --rm --volumes-from $SHIPPABLE_CONTAINER_NAME -w /build romach007/gradle-build:1.0 gradle clean build --stacktrace
 #    - cd ./build
     - ls -l
+    - ./detect-changed-services.sh
 
-  post_ci:
-    - docker build -t $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$COMMIT .
-    - docker ps -a
-    - if [ "$BRANCH" == "master" ]; then docker push $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$COMMIT; fi
+#  post_ci:
+#    - docker build -t $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$COMMIT .
+#    - docker ps -a
+#    - if [ "$BRANCH" == "master" ]; then docker push $DOCKER_ACC/$DOCKER_REPO:$BRANCH.$COMMIT; fi
 
 notifications:
     email:
         recipients:
             - vadim.dyachenko@gmail.com
-
