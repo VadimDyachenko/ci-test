@@ -31,7 +31,7 @@ detect_changed_services() {
    pushd "$service"
    # move the build script to the root of the service
    mv ./_global/package-service.sh ./.
-   ./package-service.sh "$service $COMMIT $BRANCH"
+   ./package-service.sh "$service" "$COMMIT" "$BRANCH"
    popd
  done
 }
