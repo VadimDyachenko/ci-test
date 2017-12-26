@@ -6,11 +6,12 @@ tag_and_push_image() {
   echo "building commit $2"
   echo "building pullrequest $3"
 
-  COMMIT_HASH="$(expr substr $2 1 10)"
+#  COMMIT_HASH="$(expr substr $2 1 10)"
+  COMMIT_HASH="12345"
   DATE="$(date +%Y-%m-%d)"
-  sudo docker build -t $ACCOUNT_NAME/$1:$3.$DATE-$COMMIT_HASH .
+  sudo docker build -t $ACCOUNT_NAME/$1:master.$DATE-$COMMIT_HASH .
   echo "pushing image $1"
-  sudo docker push $ACCOUNT_NAME/$1:$3.$DATE-$COMMIT_HASH
+  sudo docker push $ACCOUNT_NAME/$1:master.$DATE-$COMMIT_HASH
 }
 
 main() {
