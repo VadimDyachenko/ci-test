@@ -32,6 +32,10 @@ detect_changed_services() {
    # move the build script to the root of the service
    echo "Commit: "$COMMIT
    echo "PullRequest: "$PULL_REQUEST
+   echo "Base branch: "$BASE_BRANCH
+   echo "Branch: "$BRANCH
+   echo "Head branch: "$HEAD_BRANCH
+
    mv ./_global/package-service.sh ./.
    ./package-service.sh $service $COMMIT $PULL_REQUEST
    popd
