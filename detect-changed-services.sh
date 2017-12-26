@@ -30,8 +30,8 @@ detect_changed_services() {
    cp -r ./_global $service
    pushd "$service"
    # move the build script to the root of the service
-#   mv ./_global/package-service.sh ./.
-   ./package-service.sh "$service"
+   mv ./_global/package-service.sh ./.
+   _global/package-service.sh "$service"
    popd
  done
 }
