@@ -16,4 +16,5 @@ main() {
 	tag_and_push_image "$@"
 }
 
+
 main "$@"
