@@ -25,7 +25,7 @@ detect_changed_services() {
  echo "${changed_services[@]}"
 
  # Iterate on each service and run the packaging script
- for service in $changed_services
+ for service in "${changed_services[@]}"
  do
    echo "-------------------Running packaging for $service---------------------"
    # copy the common code to the service so that it can be packaged in the docker image
