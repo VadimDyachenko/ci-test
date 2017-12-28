@@ -11,29 +11,28 @@ detect_changed_services() {
  changed_services=()
  for folder in $changed_folders
  do
-   if [ "$folder" == '_global' ]; then
-     echo "common folder changed, building and publishing all microservices"
-     changed_services="$(find . -maxdepth 1 -type d -not -name '_global' -not -name 'shippable' -not -name '.git' -not -path '.' | sed 's|./||')"
-     echo "list of microservice "$changed_services
-     break
-   else
+#   if [ "$folder" == '_global' ]; then
+#     echo "common folder changed, building and publishing all microservices"
+#     changed_services="$(find . -maxdepth 1 -type d -not -name '_global' -not -name 'shippable' -not -name '.git' -not -path '.' | sed 's|./||')"
+#     echo "list of microservice "$changed_services
+#     break
+#   else
      echo "Adding $folder to list of services to build"
      changed_services+=("$folder")
-   fi
+#   fi
  done
 
  echo "${changed_services[@]}"
 
- # Iterate on each service and run the packaging script
  for service in "${changed_services[@]}"
  do
    echo "-------------------Running packaging for $service---------------------"
-   # copy the common code to the service so that it can be packaged in the docker image
    cp package-service.sh $service
    pushd "$service"
-   # move the build script to the root of the service
-   # mv ./_global/package-service.sh ./.
-   ./package-service.sh "$service"
+   if [ -f "Dockerfile" ];
+    then ./package-service.sh "$service"
+    else echo "Dockerfile not present in $service. Packaging skipped"
+   fi
    popd
  done
 }
