@@ -1,5 +1,4 @@
-
-tag_and_push_image() {
+main() {
   ACCOUNT_NAME='vadimdyachenko'
 
   echo "building image $1"
@@ -11,10 +10,5 @@ tag_and_push_image() {
   echo "pushing image $1"
   sudo docker push $ACCOUNT_NAME/$1:$BRANCH.$DATE-$COMMIT_HASH
 }
-
-main() {
-	tag_and_push_image "$@"
-}
-
 
 main "$@"

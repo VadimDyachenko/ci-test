@@ -9,7 +9,7 @@ detect_changed_services() {
  echo "changed folders: "$changed_folders
 
  changed_services=()
- for folder in "${changed_folders[@]}"
+ for folder in changed_folders
  do
    if [ "$folder" == '_global' ]; then
      echo "common folder changed, building and publishing all microservices"
