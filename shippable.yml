@@ -2,10 +2,10 @@ build_environment: Ubuntu 14.04
 language: java
 jdk:
     - oraclejdk8
-env:
-  global:
-  - DOCKER_REPO=ci-test # {repository name}
-  - DOCKER_ACC=vadimdyachenko # {account name}
+#env:
+#  global:
+#  - DOCKER_REPO=ci-test # {repository name}
+#  - DOCKER_ACC=vadimdyachenko # {account name}
 
 integrations:
   hub:
