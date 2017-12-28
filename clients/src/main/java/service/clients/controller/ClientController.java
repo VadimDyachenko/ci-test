@@ -27,7 +27,4 @@ public class ClientController {
             return badRequest().body("'name' is required.");
         }
     }
-    //added some changes
-    //added some changes
-    //added some changes
 }

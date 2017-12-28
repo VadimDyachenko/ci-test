@@ -18,7 +18,7 @@ detect_changed_services() {
      break
    else
      echo "Adding $folder to list of services to build"
-     changed_services+=("$folder")
+     changed_services+=('$folder')
    fi
  done
 
