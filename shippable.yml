@@ -23,7 +23,7 @@ build:
   post_ci:
     - cd /build
     - ls -l
-    - if [ "$IS_PULL_REQUEST" != true ]; then ./detect-changed-services.sh; fi
+    - if [ "$IS_PULL_REQUEST" != true -a "$BRANCH" == "master"]; then ./detect-changed-services.sh; fi
 
 notifications:
     email:
