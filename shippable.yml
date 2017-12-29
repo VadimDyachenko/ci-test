@@ -16,6 +16,7 @@ build:
     - sudo docker ps -a
     - docker rm $(docker ps --filter "status=exited" -q) || true
     - git merge origin master
+    - git name-rev --name-only MERGE_HEAD
     - cp -a ./. /build/
     - cd /build
     - ls -l
