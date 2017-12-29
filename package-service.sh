@@ -3,6 +3,7 @@ main() {
 
   echo "building image $1"
   echo "building commit $COMMIT"
+  echo "Head branch $HEAD_BRANCH"
 
   COMMIT_HASH="$(expr substr $COMMIT 1 10)"
   DATE="$(date +%Y-%m-%d)"
