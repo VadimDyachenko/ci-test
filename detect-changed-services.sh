@@ -15,7 +15,7 @@ detect_changed_services() {
      changed_services+=("$folder")
  done
 
- for service in "${changed_services[@]}"
+ for service in "${changed_folders[@]}"
  do
    echo "-------------------Running packaging for $service---------------------"
    cp package-service.sh $service
