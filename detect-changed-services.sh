@@ -5,7 +5,7 @@ detect_changed_services() {
  echo "detecting changed folders for this commit"
 
  changed_folders="$(git diff --name-only $SHIPPABLE_COMMIT_RANGE | grep / | awk 'BEGIN {FS="/"} {print $1}' | uniq)"
- echo "$(git for-each-ref | grep ^$(git rev-parse MERGE_HEAD))"
+ echo `git rev-parse MERGE_HEAD`
  echo "changed folders: "$changed_folders
 
  changed_services=()
