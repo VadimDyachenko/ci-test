@@ -8,7 +8,7 @@ init_database() {
     do
         if [ "$(mysql --host=$database_ip -P 3306 --user=root --password=12345 --execute='SELECT 1;')" ] ; then
             echo "Connection successful."
-            docker run --rm naqoda/mysql-client mysql --host="$percona_ip" -P 3306 --user=root --password=12345 --execute="CREATE USER IF NOT EXISTS 'juja'@'%' IDENTIFIED BY '12345';GRANT ALL PRIVILEGES ON *.* TO 'juja'@'%';CREATE DATABASE IF NOT EXISTS sscore_test;DROP DATABASE IF EXISTS verificator_test;CREATE DATABASE IF NOT EXISTS verificator_test;DROP DATABASE IF EXISTS messages_test;CREATE DATABASE messages_test;"
+            docker run --rm naqoda/mysql-client mysql --host="$database_ip" -P 3306 --user=root --password=12345 --execute="CREATE USER IF NOT EXISTS 'juja'@'%' IDENTIFIED BY '12345';GRANT ALL PRIVILEGES ON *.* TO 'juja'@'%';CREATE DATABASE IF NOT EXISTS sscore_test;DROP DATABASE IF EXISTS verificator_test;CREATE DATABASE IF NOT EXISTS verificator_test;DROP DATABASE IF EXISTS messages_test;CREATE DATABASE messages_test;"
             break
         else
             sleep 5
