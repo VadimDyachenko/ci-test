@@ -23,7 +23,7 @@ build:
     - cat percona_host
     - export percona_ip=$(<percona_host)
     - sudo docker stop percona
-    - sudo ./init_db.sh $percona_ip
+    - ./init_db.sh $percona_ip
     - git merge origin master
     - git name-rev --name-only MERGE_HEAD
     - cp -a ./. /build/
@@ -37,4 +37,4 @@ build:
 notifications:
     email:
         recipients:
-            - vadim.dyachenko@gmail.com
+ #           - vadim.dyachenko@gmail.com
