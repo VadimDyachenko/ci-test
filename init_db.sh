@@ -3,6 +3,7 @@
 init_database() {
     export database_ip=$1
     echo "Try connect to database"
+
     for (( c=1; c<=5; c++ ))
     do
         if [ "$(mysql --host=$database_ip -P 3306 --user=root --password=12345 --execute='SELECT 1;')" ] ; then
