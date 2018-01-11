@@ -22,7 +22,7 @@ build:
     - docker inspect --format '{{ .NetworkSettings.IPAddress }}' percona > percona_host
     - cat percona_host
     - export percona_ip=$(<percona_host)
-    - sudo ./init_db.sh $percona_ip
+    - sudo ls -la | ./init_db.sh $percona_ip
     - git merge origin master
     - git name-rev --name-only MERGE_HEAD
     - cp -a ./. /build/
