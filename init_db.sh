@@ -15,6 +15,6 @@ init_database() {
 #            echo "Retry connection to database..."
 #        fi
 #    done
-#}
+}
 
  init_database "$1"
