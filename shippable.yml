@@ -19,10 +19,16 @@ build:
     - sudo docker ps -a
     - docker rm $(docker ps --filter "status=exited" -q) || true
     - if [ ! "$(docker ps | grep percona)" ] ; then docker run -p 6603:3306 -e MYSQL_ROOT_PASSWORD=12345 --name=percona -d percona/percona-server:5.7.16 --sql_mode='' --character-set-server=utf8 --collation-server=utf8_general_ci --max_connections=450 ; sleep 10s ; fi
-    - docker inspect --format '{{ .NetworkSettings.IPAddress }}' percona > percona_host
-    - cat percona_host
-    - export percona_ip=$(<percona_host)
-    - ./init_db.sh $percona_ip
+    - export percona_ip="$( docker inspect --format '{{ .NetworkSettings.IPAddress }}' percona )"
+    - for (( c=0; c<5; c++ ))
+       do
+          if [ "$( docker exec percona mysql  -p12345 -uroot -e 'SELECT 1;' )" ] ; then
+            docker exec percona mysql -p12345 -uroot -e "CREATE USER IF NOT EXISTS 'juja'@'%' IDENTIFIED BY '12345';GRANT ALL PRIVILEGES ON *.* TO 'juja'@'%';CREATE DATABASE IF NOT EXISTS sscore_test;DROP DATABASE IF EXISTS verificator_test;CREATE DATABASE IF NOT EXISTS verificator_test;DROP DATABASE IF EXISTS messages_test;CREATE DATABASE messages_test;" ;
+            break ;
+          else
+            sleep 5 ;
+          fi
+       done
     - git merge origin master
     - git name-rev --name-only MERGE_HEAD
     - cp -a ./. /build/
@@ -36,4 +42,4 @@ build:
 notifications:
     email:
         recipients:
-            - vadim.dyachenko@gmail.com
+ #           - vadim.dyachenko@gmail.com
