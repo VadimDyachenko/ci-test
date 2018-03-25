@@ -35,9 +35,9 @@ build:
     - docker run --name=gradle -u root --rm --volumes-from $SHIPPABLE_CONTAINER_NAME -w /build romach007/gradle-build:1.0 gradle clean build --stacktrace
 
   post_ci:
+    - sudo docker run --name=gradle -u root --rm --volumes-from $SHIPPABLE_CONTAINER_NAME -w /build romach007/gradle-build:1.0 gradle clean assemble --stacktrace
     - cd /build
     - ls -la
-    - sudo docker run --name=gradle -u root --rm --volumes-from $SHIPPABLE_CONTAINER_NAME -w /build romach007/gradle-build:1.0 gradle clean assemble --stacktrace
     -  ./detect-changed-services.sh
 
 notifications:
