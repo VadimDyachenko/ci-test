@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-detect_changed_services() {
+create-docker-image() {
  echo "----------------------------------------------"
  echo "detecting changed folders for this commit"
 
@@ -17,4 +17,4 @@ detect_changed_services() {
  done
 }
 
-detect_changed_services
+create-docker-image

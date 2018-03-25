@@ -38,7 +38,7 @@ build:
     - sudo docker run --name=gradle -u root --rm --volumes-from $SHIPPABLE_CONTAINER_NAME -w /build romach007/gradle-build:1.0 gradle clean assemble --stacktrace
     - cd /build
     - ls -la
-    - ./detect-changed-services.sh
+    - ./create-docker-image.sh
 
 notifications:
     email:
