@@ -4,7 +4,7 @@ detect_changed_services() {
  echo "----------------------------------------------"
  echo "detecting changed folders for this commit"
 
- for folder in  */
+ for folder in *
  do
    echo "-------------------Running packaging for $folder---------------------"
    cp package-service.sh $folder
