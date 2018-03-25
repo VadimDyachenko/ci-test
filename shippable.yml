@@ -37,9 +37,7 @@ build:
   post_ci:
     - cd /build
     - ls -la
-    - if [ "$BRANCH" == "test-ci" ]; then docker run --name=gradle -u root --rm --volumes-from $SHIPPABLE_CONTAINER_NAME -w /build romach007/gradle-build:1.0 gradle clean assemble --stacktrace; fi
-#      docker build -t $ACCOUNT_NAME/${SERVICES[$1]}:$BRANCH.$DATE-$COMMIT_HASH .;
-
+    - if [ "$BRANCH" == "test-ci" ]; then ./detect-changed-services.sh; fi
 
 notifications:
     email:
